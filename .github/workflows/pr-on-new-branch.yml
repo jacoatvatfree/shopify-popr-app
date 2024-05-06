@@ -30,6 +30,12 @@ jobs:
           echo "title=$title" >> $GITHUB_OUTPUT
           fixes="Fixes #${{ steps.extract_branch.outputs.issue }}"
           echo "fixes=$fixes" >> $GITHUB_OUTPUT
+      - name: Add ticket label
+        uses: actions-ecosystem/action-add-labels@v1
+        if: ${{ steps.extract_branch.outputs.label != '' && steps.extract_branch.outputs.issue != '' }}
+        with:
+          number: ${{ steps.extract_branch.outputs.issue }}
+          labels: ${{ steps.extract_branch.outputs.label }}
       - name: pull-request-action
         uses: vsoch/pull-request-action@master
         id: pull_request
@@ -47,9 +53,3 @@ jobs:
         with:
           number: ${{ steps.pull_request.outputs.pull_request_number }}
           labels: WIP
-      - name: Add ticket label
-        uses: actions-ecosystem/action-add-labels@v1
-        if: ${{ steps.extract_branch.outputs.label != '' && steps.pull_request.outputs.pull_request_number != '' }}
-        with:
-          number: ${{ steps.pull_request.outputs.pull_request_number }}
-          labels: ${{ steps.extract_branch.outputs.label }}
