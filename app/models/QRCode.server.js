@@ -38,6 +38,7 @@ export function getDestinationUrl(qrCode) {
   const match = /gid:\/\/shopify\/ProductVariant\/(\d+)/.exec(
     qrCode.productVariantId,
   );
+
   invariant(match, "Unrecognized product variant ID");
 
   return `https://${qrCode.shop}/cart/${match[1]}:1`;
