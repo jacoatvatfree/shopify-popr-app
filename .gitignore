@@ -38,3 +38,5 @@ extensions/*/build
 
 # Node library SQLite database
 web/database.sqlite
+
+.eslintcache
