@@ -49,7 +49,7 @@ jobs:
           labels: WIP
       - name: Add ticket label
         uses: actions-ecosystem/action-add-labels@v1
-        if: ${{ steps.extract_branch.outputs.label != '' }}
+        if: ${{ steps.extract_branch.outputs.label != '' && steps.pull_request.outputs.pull_request_number != '' }}
         with:
-          number: ${{ steps.pull_request.outputs.issue }}
+          number: ${{ steps.pull_request.outputs.pull_request_number }}
           labels: ${{ steps.extract_branch.outputs.label }}
