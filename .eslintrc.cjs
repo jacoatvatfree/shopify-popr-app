@@ -8,6 +8,19 @@ module.exports = {
     "prettier",
   ],
   globals: {
-    shopify: "readonly"
+    shopify: "readonly",
   },
+  env: {
+    browser: true,
+    es6: true,
+    mocha: true,
+  },
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  rules: {},
 };
